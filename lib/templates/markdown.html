@@ -17,5 +17,26 @@
 {{{content}}}
 <footer><sup><hr> Served by <a href="https://www.npmjs.com/package/markserv">MarkServ</a> | PID: {{pid}}</sup></footer>
 </article>
+
+<!-- Mermaid diagram support -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'default',
+    securityLevel: 'loose'
+  });
+
+  // Convert code blocks with language-mermaid to mermaid diagrams
+  document.querySelectorAll('code.language-mermaid, code.hljs.language-mermaid').forEach(function(codeBlock, index) {
+    var pre = codeBlock.parentElement;
+    var container = document.createElement('div');
+    container.className = 'mermaid';
+    container.textContent = codeBlock.textContent;
+    pre.parentNode.replaceChild(container, pre);
+  });
+
+  mermaid.run();
+</script>
 </body>
 </html>
